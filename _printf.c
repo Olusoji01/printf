@@ -12,8 +12,8 @@ int _printf(const char *format, ...)
 	const char *val_s;
 	int count = 0;
 	va_list list;
-	va_start(list, format);
 
+	va_start(list, format);
 	while (*format != '\0')
 	{
 		if (*format == '%' && *(format + 1) != '\0')
@@ -21,25 +21,25 @@ int _printf(const char *format, ...)
 			switch (*(format + 1))
 			{
 				case 'c':
-					putchar(va_arg(list, int));
+					_putchar(va_arg(list, int));
 					count++;
 					break;
 				case 's':
 					val_s = va_arg(list, const char *);
 					while (*val_s != '\0')
 					{
-						putchar(*val_s);
+						_putchar(*val_s);
 						val_s++;
 						count++;
 					}
 					break;
 				case '%':
-					putchar('%');
+					_putchar('%');
 					count++;
 					break;
 				default:
-					putchar('%');
-					putchar(*(format + 1));
+					_putchar('%');
+					_putchar(*(format + 1));
 					count += 2;
 					break;
 			}
@@ -47,7 +47,7 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			putchar(*format);
+			_putchar(*format);
 			count++;
 			format++;
 		}
